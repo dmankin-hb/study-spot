@@ -1789,3 +1789,6 @@ footer {
     font-size: 13px;
   }
 }
+
+/* Decorative orbits must not introduce horizontal scrolling. */
+.hero { overflow: clip; }
