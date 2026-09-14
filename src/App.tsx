@@ -21,6 +21,7 @@ import {
   Wifi,
   X,
 } from "lucide-react";
+import { Analytics } from "@vercel/analytics/react";
 import config from "./site-config.json";
 
 const spots = [
@@ -575,6 +576,7 @@ export default function App() {
           <span>Built for wherever you find your focus.</span>
         </div>
       </footer>
+      <Analytics />
     </>
   );
 }
