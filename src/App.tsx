@@ -22,6 +22,7 @@ import {
   X,
 } from "lucide-react";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import config from "./site-config.json";
 
 const spots = [
@@ -577,6 +578,7 @@ export default function App() {
         </div>
       </footer>
       <Analytics />
+      <SpeedInsights />
     </>
   );
 }
