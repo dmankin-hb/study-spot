@@ -2,10 +2,29 @@
   "signupUrl": "https://docs.google.com/forms/d/e/1FAIpQLScEA-rE94qYWOXaF4bn52ihDnro_ZVMZL0rt-FeXfqCH6geww/viewform",
   "signupVerified": true,
   "team": [
-    { "name": "Emma Herzog", "initials": "EH", "email": "", "photo": "" },
-    { "name": "Daniel Mankin", "initials": "DM", "email": "", "photo": "" },
-    { "name": "Emma Blevins", "initials": "EB", "email": "", "photo": "" },
-    { "name": "Maddy Clark", "initials": "MC", "email": "", "photo": "" }
+    {
+      "name": "Emma Herzog",
+      "email": "emma.herzog@colorado.edu",
+      "photo": "/team/emma-herzog.webp"
+    },
+    {
+      "name": "Daniel Mankin",
+      "email": "daniel.mankin@colorado.edu",
+      "photo": "/team/daniel-mankin.webp"
+    },
+    {
+      "name": "Emma Blevens",
+      "email": "emma.blevens@colorado.edu",
+      "photo": "/team/emma-blevens.webp"
+    },
+    {
+      "name": "Maddy Clark",
+      "email": "madelyn.clark@colorado.edu",
+      "photo": "/team/maddy-clark.webp"
+    }
   ],
-  "socials": { "instagram": "", "linkedin": "" }
+  "socials": {
+    "instagram": "",
+    "linkedin": ""
+  }
 }

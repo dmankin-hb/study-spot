@@ -1,10 +1,9 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import {
   ArrowDown,
   ArrowRight,
   ArrowUpRight,
   BookOpen,
-  ChevronRight,
   Coffee,
   GraduationCap,
   Instagram,
@@ -162,7 +161,7 @@ function AppPreview() {
           </div>
           <div className="app-results-label">
             <span aria-live="polite">{filtered.length} sample spaces</span>
-            <span>CONCEPT PREVIEW</span>
+            <span>APP PREVIEW</span>
           </div>
           <div className="spot-list">
             {filtered.map((spot) => (
@@ -216,32 +215,16 @@ function AppPreview() {
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const signupDialog = useRef<HTMLDialogElement>(null);
   const signupReady = Boolean(config.signupUrl && config.signupVerified);
   const signup = (
     className = "button button-primary",
-    label = "Join the pilot",
-  ) =>
-    signupReady ? (
-      <a
-        className={className}
-        href={config.signupUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {label}
-        <ArrowUpRight size={18} />
-        <span className="sr-only"> (opens Google Form in a new tab)</span>
-      </a>
-    ) : (
-      <button
-        className={className}
-        onClick={() => signupDialog.current?.showModal()}
-      >
-        {label}
-        <ArrowUpRight size={18} />
-      </button>
-    );
+    label = "Join the list",
+  ) => (
+    <a className={className} href="#join" onClick={() => setMenuOpen(false)}>
+      {label}
+      <ArrowRight size={18} />
+    </a>
+  );
 
   return (
     <>
@@ -253,7 +236,14 @@ export default function App() {
           <Brand />
           <nav
             className={menuOpen ? "navigation open" : "navigation"}
+            id="main-navigation"
             aria-label="Main navigation"
+            onKeyDown={(event) => {
+              if (event.key === "Escape") {
+                setMenuOpen(false);
+                document.getElementById("menu-toggle")?.focus();
+              }
+            }}
           >
             <a href="#how-it-works" onClick={() => setMenuOpen(false)}>
               How it works
@@ -268,6 +258,8 @@ export default function App() {
           <div className="nav-actions">
             {signup("button button-small")}
             <button
+              id="menu-toggle"
+              aria-controls="main-navigation"
               className="menu-toggle"
               aria-label={menuOpen ? "Close navigation" : "Open navigation"}
               aria-expanded={menuOpen}
@@ -310,7 +302,8 @@ export default function App() {
             <div className="pilot-note">
               <MapPin size={15} />
               <span>
-                Starting with a proposed pilot at <strong>CU Boulder</strong>
+                Starting in <strong>Boulder.</strong> Building for campuses and
+                communities nationwide.
               </span>
             </div>
           </div>
@@ -387,10 +380,10 @@ export default function App() {
                 One simple idea: know what a space is like before you get there.
               </p>
               <a className="text-link" href="#app-preview">
-                Explore the concept <ArrowRight size={17} />
+                Try the app preview <ArrowRight size={17} />
               </a>
               <span className="concept-tag">
-                <BookOpen size={14} /> In development · Help shape the pilot
+                <BookOpen size={14} /> In development · Help shape what’s next
               </span>
             </div>
             <ol className="steps">
@@ -410,7 +403,7 @@ export default function App() {
                   <h3>Get a feel for the options.</h3>
                   <p>
                     Compare nearby spots using the conditions we plan to surface
-                    through recent student reports and available data.
+                    through recent community reports and available data.
                   </p>
                 </div>
               </li>
@@ -430,39 +423,30 @@ export default function App() {
         <section className="team-section section-wrap" id="team">
           <div className="team-heading">
             <div>
-              <p className="eyebrow">FROM ONE STUDENT TO ANOTHER</p>
+              <p className="eyebrow">THE PEOPLE BEHIND STUDY SPOT</p>
               <h2>We’ve been there, too.</h2>
             </div>
             <p>
-              We’re four CU Boulder students with the same crowded-library
-              problem. Now we’re exploring a way to solve it, together.
+              We know the frustration of a full library or a café that’s too
+              loud. We’re building Study Spot to help you find a space that
+              fits, wherever you study.
             </p>
           </div>
           <div className="team-grid">
-            {config.team.map((person, i) => (
+            {config.team.map((person) => (
               <article className="team-card" key={person.name}>
-                {person.photo ? (
-                  <img
-                    className="team-photo"
-                    src={person.photo}
-                    alt={person.name}
-                    width="400"
-                    height="450"
-                    loading="lazy"
-                  />
-                ) : (
-                  <div
-                    className={`team-initials initials-${i}`}
-                    aria-hidden="true"
-                  >
-                    <span>{person.initials}</span>
-                    <BookOpen size={25} strokeWidth={1.3} />
-                  </div>
-                )}
+                <img
+                  className="team-photo"
+                  src={person.photo}
+                  alt={`Portrait of ${person.name}`}
+                  width="600"
+                  height="645"
+                  loading="lazy"
+                  decoding="async"
+                />
                 <div className="team-card-info">
                   <div>
                     <h3>{person.name}</h3>
-                    <p>Co-founder · CU Boulder</p>
                   </div>
                   {person.email && (
                     <a
@@ -478,30 +462,80 @@ export default function App() {
             ))}
           </div>
         </section>
-        <section className="join-section section-wrap" id="join">
+        <section
+          className="join-section section-wrap"
+          id="join"
+          aria-labelledby="join-title"
+        >
           <div className="join-card">
             <div className="join-copy">
-              <p className="eyebrow">GOOD STUDY SESSIONS START HERE.</p>
-              <h2>
-                Your next great
+              <p className="eyebrow">HELP SHAPE WHAT’S NEXT</p>
+              <h2 id="join-title">
+                Better study days
                 <br />
-                idea needs a spot.
+                start with you.
               </h2>
               <p>
-                Help shape Study Spot at CU Boulder. Join the pilot interest
-                list and be among the first to hear what’s next.
+                Join the interest list for product updates and share what would
+                make finding your next study spot easier.
               </p>
-              {signup("button button-white")}
+              <div className="launch-detail">
+                <MapPin size={20} />
+                <div>
+                  <strong>Boulder first. A wider vision.</strong>
+                  <p>
+                    Our initial pilot is planned for Boulder. Our goal is to
+                    bring Study Spot to campuses and communities across the
+                    country.
+                  </p>
+                </div>
+              </div>
+              <img
+                className="join-brand-mark"
+                src="/favicon.svg"
+                alt=""
+                width="80"
+                height="80"
+              />
               <span className="join-note">
-                {signupReady
-                  ? "A quick Google Form. Just your email, plus optional feedback."
-                  : "Pilot in development. Signups opening soon."}
+                In development. Your feedback helps guide what we build.
               </span>
             </div>
-            <div className="join-symbol" aria-hidden="true">
-              <MapPin size={170} strokeWidth={1} />
-              <BookOpen size={58} strokeWidth={1.4} />
-              <span>FIND YOUR FOCUS.</span>
+            <div className="signup-panel">
+              <div className="signup-panel-heading">
+                <span className="feature-icon">
+                  <Mail size={22} />
+                </span>
+                <div>
+                  <h3>Find your focus. Stay in the loop.</h3>
+                  <p>Your email, plus optional feedback.</p>
+                </div>
+              </div>
+              {signupReady ? (
+                <>
+                  <iframe
+                    className="signup-embed"
+                    src={`${config.signupUrl}?embedded=true`}
+                    title="Study Spot interest list signup form"
+                    loading="lazy"
+                  />
+                  <p className="form-fallback">
+                    Prefer a separate tab?{" "}
+                    <a
+                      href={config.signupUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Open the signup form <ArrowUpRight size={14} />
+                      <span className="sr-only"> (opens in a new tab)</span>
+                    </a>
+                  </p>
+                </>
+              ) : (
+                <p className="signup-unavailable">
+                  The interest list is opening soon. Check back for updates.
+                </p>
+              )}
             </div>
           </div>
         </section>
@@ -538,44 +572,9 @@ export default function App() {
         </div>
         <div className="footer-bottom">
           <p>© {new Date().getFullYear()} Study Spot</p>
-          <p>
-            A student venture. Not an official University of Colorado service.
-          </p>
-          <span>Made with focus in Boulder, CO.</span>
+          <span>Built for wherever you find your focus.</span>
         </div>
       </footer>
-      <dialog
-        ref={signupDialog}
-        className="signup-dialog"
-        aria-labelledby="signup-dialog-title"
-        onClick={(event) => {
-          if (event.target === signupDialog.current)
-            signupDialog.current?.close();
-        }}
-      >
-        <button
-          className="dialog-close"
-          aria-label="Close signup message"
-          onClick={() => signupDialog.current?.close()}
-        >
-          <X size={22} />
-        </button>
-        <span className="feature-icon">
-          <BookOpen size={28} />
-        </span>
-        <p className="eyebrow">THE START OF SOMETHING GOOD</p>
-        <h2 id="signup-dialog-title">The pilot is taking shape.</h2>
-        <p>
-          Signups aren’t open just yet. Check back soon to join the CU Boulder
-          pilot interest list and help shape Study Spot.
-        </p>
-        <button
-          className="button button-primary"
-          onClick={() => signupDialog.current?.close()}
-        >
-          Got it <ChevronRight size={17} />
-        </button>
-      </dialog>
     </>
   );
 }

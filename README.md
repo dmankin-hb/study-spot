@@ -1,6 +1,6 @@
 # Study Spot
 
-A responsive landing page for a proposed CU Boulder pilot. Built with React, TypeScript, Vite, self-hosted fonts, and Lucide icons. Study-space conditions in the interactive preview are explicitly fictional sample data.
+A responsive product landing page for Study Spot, a study-space discovery app in development. Boulder is the planned starting market; the vision is to expand to campuses and communities nationwide. Built with React, TypeScript, Vite, self-hosted fonts, and Lucide icons. The interactive app preview uses illustrative sample conditions, not live readings.
 
 ## Development
 
@@ -9,27 +9,54 @@ npm ci
 npm run dev
 npm run build
 npm run preview
+npm run check:launch
 ```
 
-## Content
+There is no configured formatter, linter, or unit-test runner. The production build includes TypeScript checks. The launch check validates the respondent form URL, its existing verification flag, confirmed team emails, and public headshot files. Social accounts are optional; supplied URLs must be HTTPS.
 
-Edit `src/site-config.json` to update the shared signup URL, verified team emails, identified headshots, and social URLs. Headshots belong in `public/team/` and config paths should start with `/team/`. Missing photos render initials; missing contact and social links are omitted. These are preview fallbacks, not substitutes for the agreed final team information.
+## Content sources
 
-All “Join the pilot” links open the same Google Form in a new tab. The form requires a valid email, includes optional feedback, accepts responses without Google sign-in, and saves them to a private Google Sheet owned by the founder's school account. No visitor data is stored by this site. Signup becomes active only when a URL is present and `signupVerified` is true.
+Reviewed all five files in the adjacent `Study Spot-docs` folder:
 
-Google Form and response-sheet management links are retained in local `tmp/launch-notes.md` rather than the public repository. One clearly labeled `studyspot-test@example.com` response was used to verify the integration; exclude it when measuring genuine pilot interest.
+- **Study Spot Description.docx:** four space conditions, campus-first audience, and expansion to additional universities and cities.
+- **Landing Page Reflection Study Spot.docx:** in-development status, planned Boulder pilot, interest-list purpose, optional feedback, and the existing calm blue visual direction.
+- **Landing Page Assignment.docx:** confirmed team names and email addresses. Unconfirmed social accounts are omitted.
+- **Study Spot Pitch 1.pptx:** know-before-you-go positioning and campus-to-campus scale. Proposed features, research figures, and partnerships are not represented as live capabilities.
+- **Team Concept Description.docx:** contains evaluation questions rather than additional product facts.
 
-The root Word documents, slide deck, and original photos are preserved locally and ignored by Git and Vercel. Only explicitly selected public assets should be added to the website.
+The current polishing request supersedes academic framing in these source materials and requires nationwide ambition without overstating current availability.
 
-## Publishing
+## Team photography
 
-Import `dmankin-hb/study-spot` into the Study Spot Vercel workspace using Vite, the repository root, build command `npm run build`, and output directory `dist`. Use preview deployments for review; the `main` branch is the production branch once the final launch inputs are complete. No environment variables are required.
+The original files remain in `headshots/` and are excluded from Git and deployments. Optimized, orientation-corrected 600 × 645 WebP portraits are published in `public/team/` (about 168 KB total). Cards use natural cover crops, lazy loading, and name-specific alternative text.
 
-Before final launch, run `npm run check:launch`. It checks the Google Form configuration, confirmation that a test reached the response sheet, all four team email addresses and headshots, and both social links. This check deliberately remains separate from the build so an incomplete team section can be previewed.
+| Source filename     | Person        | Confirmed email            |
+| ------------------- | ------------- | -------------------------- |
+| `emma-herzog.jpeg`  | Emma Herzog   | emma.herzog@colorado.edu   |
+| `daniel-mankin.JPG` | Daniel Mankin | daniel.mankin@colorado.edu |
+| `emma-blevens.jpeg` | Emma Blevens  | emma.blevens@colorado.edu  |
+| `maddy-clark.png`   | Maddy Clark   | madelyn.clark@colorado.edu |
 
-## Verification
+Names and contacts are maintained in `src/site-config.json`. No professional titles are assigned.
 
-- TypeScript and optimized production build.
-- Responsive layouts, sample filters, mobile navigation, keyboard focus, anchor targets, and signup destinations.
-- Google Form validation and a successful anonymous test response in the private response sheet.
-- Final launch additionally requires provided team assets, confirmed contact details, public social URLs, and a public Vercel production address.
+## Signup
+
+“Join the list” links lead to `#join`, which embeds the original Google Form respondent URL from the shared config. A direct link opens the same form in a separate tab if embedding is unavailable. The site does not intercept submissions or store responses. Google controls the form’s contents and validation; form edits must be made through Google Forms. The form title and description were updated and verified publicly through the owner’s Safari session. Google’s organization footer remains controlled by the form account. The questions and response destination were preserved.
+
+The existing `signupVerified` flag records prior submission verification, not a new test during this polish. No new test response was submitted. If the form changes, check its height on mobile and desktop and reverify the response destination. Do not remove iframe scrolling: browser zoom and Google validation messages can increase content height.
+
+## Brand and positioning changes
+
+The favicon and navbar share one SVG with an open book contained within a location pin. The signup section reuses this same mark, replacing separately layered icons.
+
+Boulder-specific marketing was updated in the hero launch note, team introduction, team cards, signup copy, footer, HTML description, Open Graph description, and this README. The old unavailable-signup dialog was removed in favor of an inline generic fallback. Boulder and CU names remain only as context for the planned initial market and sample locations. The preview filters and `#app-preview` anchor remain functional.
+
+## Publishing and domain
+
+Requested address: `study-spot.vercel.app`. Vercel rejected it because it is already assigned to another team. Keep the existing production domain attached. Choose an available domain or arrange transfer of the requested domain before adding canonical and Open Graph URL metadata; those tags are omitted to avoid pointing search engines at another team's site.
+
+Use the existing Vercel project, Vite framework, build command `npm run build`, and output directory `dist`. No environment variables are required. The existing project deploys from the repository's `main` branch.
+
+## Browser verification
+
+Chromium checks passed at 320, 375, 390, 768, 1024, and 1440 px: no horizontal page overflow, all four portraits loaded, the Quiet/Outlets/All filters returned 1/2/3 sample spaces, mobile navigation closed after selection, internal links resolved, and the app-preview anchor landed correctly. No page JavaScript errors were observed. Google’s form loaded with its required email and optional feedback fields. No new submission was made. Desktop and mobile screenshots were reviewed. The hosted form copy is now updated. The requested domain remains unavailable.

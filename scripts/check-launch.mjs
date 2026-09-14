@@ -25,6 +25,7 @@ for (const person of config.team) {
     missing.push(`Identified headshot for ${person.name}`);
 }
 for (const [platform, url] of Object.entries(config.socials)) {
+  if (!url) continue; // Social accounts are optional until confirmed.
   try {
     if (new URL(url).protocol !== "https:") throw new Error();
   } catch {
