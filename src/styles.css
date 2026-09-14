@@ -794,41 +794,6 @@ h2 {
   border-radius: 8px;
   display: block;
 }
-.team-initials {
-  aspect-ratio: 4/4.3;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #eef2fb;
-  color: #b5c6ea;
-  position: relative;
-  overflow: hidden;
-}
-.team-initials > span {
-  font-family: Manrope, sans-serif;
-  font-size: 67px;
-  letter-spacing: -5px;
-  font-weight: 500;
-}
-.team-initials svg {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  color: #829bc8;
-}
-.initials-1 {
-  background: #e5ecfb;
-  color: #a5bde7;
-}
-.initials-2 {
-  background: #f1f4fa;
-  color: #b7c7df;
-}
-.initials-3 {
-  background: #e9effa;
-  color: #a8bcdf;
-}
 .team-card-info {
   margin-top: 18px;
   display: flex;
@@ -929,29 +894,6 @@ h2 {
   display: block;
   margin-top: 16px;
 }
-.join-symbol {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  z-index: 1;
-  color: #b5c9ff;
-}
-.join-symbol > svg:first-child {
-  width: 180px;
-  height: 180px;
-  stroke-width: 0.8;
-}
-.join-symbol > svg:nth-child(2) {
-  position: absolute;
-  top: 43px;
-}
-.join-symbol > span {
-  font-size: 9px;
-  letter-spacing: 3px;
-  margin-top: 23px;
-  color: #e2eaff;
-}
 footer {
   padding-bottom: 28px;
 }
@@ -994,41 +936,6 @@ footer {
   color: #596b85;
   padding-top: 22px;
   line-height: 1.6;
-}
-.signup-dialog {
-  border: 1px solid #dbe4f5;
-  border-radius: 16px;
-  box-shadow: 0 25px 100px #0d203844;
-  max-width: 480px;
-  width: calc(100% - 36px);
-  padding: 40px;
-  color: var(--navy);
-}
-.signup-dialog::backdrop {
-  background: #10244866;
-  backdrop-filter: blur(4px);
-}
-.signup-dialog .feature-icon {
-  margin-bottom: 25px;
-}
-.signup-dialog h2 {
-  font-size: 30px;
-  letter-spacing: -1px;
-}
-.signup-dialog > p:not(.eyebrow) {
-  font-size: 16px;
-  line-height: 1.75;
-  color: var(--muted);
-  margin: 20px 0 25px;
-}
-.dialog-close {
-  position: absolute;
-  right: 15px;
-  top: 15px;
-  background: none;
-  border: 0;
-  padding: 8px;
-  color: #72819a;
 }
 @media (min-width: 1500px) {
   .hero {
@@ -1302,9 +1209,6 @@ footer {
   }
   .team-card p {
     font-size: 9px;
-  }
-  .team-initials > span {
-    font-size: 50px;
   }
   .join-card {
     padding: 40px;
@@ -1629,14 +1533,6 @@ footer {
   .team-card-info {
     margin-top: 13px;
   }
-  .team-initials > span {
-    font-size: 58px;
-  }
-  .team-initials svg {
-    width: 20px;
-    bottom: 17px;
-    left: 17px;
-  }
   .join-section {
     padding-bottom: 45px;
   }
@@ -1658,9 +1554,6 @@ footer {
   }
   .join-note {
     font-size: 10px;
-  }
-  .join-symbol {
-    display: none;
   }
   .footer-top {
     gap: 18px;
@@ -1690,12 +1583,6 @@ footer {
   }
   .footer-bottom > span {
     margin-left: auto;
-  }
-  .signup-dialog {
-    padding: 30px;
-  }
-  .signup-dialog h2 {
-    font-size: 27px;
   }
 }
 @media (max-width: 370px) {
@@ -1791,4 +1678,188 @@ footer {
 }
 
 /* Decorative orbits must not introduce horizontal scrolling. */
-.hero { overflow: clip; }
+.hero {
+  overflow: clip;
+}
+
+/* Signup shares the page palette; Google owns the form contents. */
+.join-card {
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.25fr);
+  gap: 44px;
+  padding: 48px;
+  align-items: start;
+}
+.join-copy {
+  padding-top: 16px;
+}
+.join-card h2 {
+  font-size: clamp(32px, 3.5vw, 43px);
+}
+.launch-detail {
+  display: flex;
+  gap: 12px;
+  padding-top: 26px;
+  border-top: 1px solid #ffffff40;
+}
+.launch-detail strong {
+  font-size: 15px;
+}
+.launch-detail p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #e1eaff;
+  margin-top: 10px;
+}
+.join-brand-mark {
+  display: block;
+  margin-top: 32px;
+  border: 1px solid #ffffff40;
+  border-radius: 24px;
+}
+.join-note {
+  font-size: 12px;
+  line-height: 1.7;
+}
+.signup-panel {
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+  background: #fff;
+  color: var(--navy);
+  border-radius: 12px;
+  box-shadow: 0 16px 36px #1236a638;
+  overflow: hidden;
+}
+.signup-panel-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 24px;
+  border-bottom: 1px solid var(--line);
+}
+.signup-panel-heading .feature-icon {
+  flex-shrink: 0;
+}
+.signup-panel h3 {
+  font-size: 16px;
+  line-height: 1.5;
+}
+.signup-panel-heading p {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+.signup-embed {
+  display: block;
+  width: 100%;
+  height: 760px;
+  border: 0;
+  background: #fff;
+}
+.form-fallback {
+  padding: 18px 20px;
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+  line-height: 1.8;
+  text-align: center;
+  color: var(--muted);
+}
+.form-fallback a {
+  color: var(--blue);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+}
+.signup-unavailable {
+  padding: 32px;
+  line-height: 1.7;
+}
+.team-email {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+}
+.team-photo {
+  background: var(--soft);
+}
+.app-filters button {
+  min-height: 40px;
+}
+#app-preview {
+  scroll-margin-top: 20px;
+}
+@media (max-width: 1000px) {
+  .join-card {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .join-copy > p:not(.eyebrow) {
+    max-width: 600px;
+  }
+  .join-brand-mark {
+    display: none;
+  }
+}
+@media (max-width: 640px) {
+  .join-card {
+    display: grid;
+    padding: 26px 16px 16px;
+    gap: 26px;
+  }
+  .join-copy {
+    padding: 0 8px;
+  }
+  .signup-panel-heading {
+    padding: 18px 14px;
+  }
+  .signup-panel-heading .feature-icon {
+    display: none;
+  }
+  .signup-embed {
+    height: 850px;
+  }
+  .team-card-info {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .hero-actions {
+    flex-wrap: wrap;
+  }
+  .menu-toggle {
+    min-width: 40px;
+    min-height: 44px;
+  }
+}
+@media (max-width: 370px) {
+  .nav-actions > .button {
+    padding: 10px 8px;
+    gap: 4px;
+  }
+  .nav-wrap {
+    gap: 5px;
+  }
+  .brand {
+    font-size: 20px;
+  }
+}
+/* Sized against the current Google Form; retain overflow for zoom and validation. */
+.signup-embed {
+  height: 840px;
+}
+@media (max-width: 640px) {
+  .signup-embed {
+    height: 960px;
+  }
+}
+@media (max-width: 400px) {
+  .signup-embed {
+    height: 1040px;
+  }
+}
+@media (max-width: 340px) {
+  .signup-embed {
+    height: 1200px;
+  }
+}

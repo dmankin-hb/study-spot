@@ -7,3 +7,5 @@ tmp
 *.jpg
 *.JPG
 /*.png
+
+/headshots/
